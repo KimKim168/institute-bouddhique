@@ -1,68 +1,19 @@
 "use client";
-import {
-  FacebookIcon,
-  PhoneCall,
-  Send,
-  Youtube,
-  YoutubeIcon,
-} from "lucide-react";
-import Image from "next/image";
-import { useEffect, useState } from "react";
 
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import { Card, CardContent } from "@/components/ui/card";
+import Image from "next/image";
+import { useEffect } from "react";
+
 import Link from "next/link";
+import MySlider from "@/components/my-slide";
 
 export default function page() {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const totalItems = 5;
-
-  // Auto-slide every 3 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % totalItems);
-    }, 3000); // 3 seconds interval for auto-slide
-
-    // Cleanup interval on component unmount
-    return () => clearInterval(interval);
-  }, []);
-
-  const imageUrls = [
-    "/assets/images/slide1.webp",
-    "/assets/images/slide2.webp",
-    "/assets/images/slide3.webp",
-    "/assets/images/slide4.webp",
-  ];
 
   return (
     <>
       {" "}
       {/* Slide */}
-      <div className="max-w-screen-2xl mx-auto">
-        <Carousel className="w-full" selectedIndex={currentIndex}>
-          <CarouselContent>
-            {imageUrls.map((src, index) => (
-              <CarouselItem key={index}>
-                <Image
-                  src={src}
-                  width={3000}
-                  height={3000}
-                  className="w-full h-[600px] aspect-video object-cover"
-                  alt={`Image ${index + 1}`}
-                />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full" />
-          <CarouselNext className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full" />
-        </Carousel>
-      </div>
+      <MySlider />
       {/*End Slide */}
       {/*Start */}
       <section className="bg-white px-10 py-20">
