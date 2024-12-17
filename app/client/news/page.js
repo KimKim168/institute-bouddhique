@@ -1,26 +1,49 @@
 "use client";
-import { CalendarDaysIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
+import { Koulen } from "next/font/google";
+
+const koulen = Koulen({ subsets: ["khmer"], weight: ["400"] });
 export default function Page() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const totalItems = 5;
-
-  // Auto-slide every 3 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % totalItems);
-    }, 3000); // 3 seconds interval for auto-slide
-
-    // Cleanup interval on component unmount
-    return () => clearInterval(interval);
-  }, []);
-
   const imageUrls = ["/assets/images/slide2.webp"];
+  const blogs = [
+    {
+      id: 1,
+      title: "Exploring the Beauty of Modern Design",
+      description:
+        "An insight into how modern design trends shape user experiences.",
+      image: "/assets/images/book1.jpg",
+      date: "Dec 1, 2024",
+    },
+    {
+      id: 2,
+      title: "The Rise of AI in Everyday Applications",
+      description:
+        "Learn how artificial intelligence is being integrated into daily tools.",
+      image: "/assets/images/book1.jpg",
+      date: "Nov 25, 2024",
+    },
+    {
+      id: 3,
+      title: "Sustainability in Web Development",
+      description:
+        "Discover eco-friendly approaches in software and web development.",
+      image: "/assets/images/book1.jpg",
+      date: "Nov 18, 2024",
+    },
+    {
+      id: 4,
+      title: "Innovations in Mobile Technology",
+      description:
+        "A look at the latest breakthroughs in mobile devices and platforms.",
+      image: "/assets/images/book1.jpg",
+      date: "Nov 10, 2024",
+    },
+  ];
 
   return (
-    <div className="max-w-screen-xl mx-auto">
+    <div className={`max-w-screen-xl mx-auto `}>
       {/* Slide */}
       <div className="relative w-full">
         <div className="w-full h-[300px] md:h-[600px] overflow-hidden">
@@ -35,96 +58,47 @@ export default function Page() {
       </div>
 
       {/* Content Section */}
-      <section className="px-4 py-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Main content */}
-          <div className="col-span-1">
-            <h1 className="text-2xl font-bold mb-5">Heading</h1>
-            <p className="mb-4">
-              Nullam eget tincidunt dolor, at accumsan odio. Morbi eget ligula
-              gravida, pulvinar magna eget, eleifend mi.
-            </p>
-            <p className="mb-4">
-              Nullam eget tincidunt dolor, at accumsan odio. Morbi eget ligula
-              gravida, pulvinar magna eget, eleifend mi.
-            </p>
-            <h2 className="text-xl font-semibold my-4">Subheading</h2>
-            <p className="mb-4">
-              Nullam eget tincidunt dolor, at accumsan odio. Morbi eget ligula
-              gravida, pulvinar magna eget, eleifend mi.
-            </p>
-          </div>
+      <div className="max-w-screen-xl mx-auto px-4 lg:px-0 py-16">
+        {/* Heading */}
+        <h1
+          className={`text-3xl lg:text-4xl text-red-900 text-center mb-6  ${koulen.className}`}
+        >
+          ព័ត៌មានថ្មីៗ
+        </h1>
 
-          {/* Sidebar */}
-          <div className="col-span-1">
-            <div className="bg-white p-4">
-              <h5 className="text-lg font-bold mb-3">Most Popular</h5>
-              <div className="grid grid-cols-1 gap-4">
-                <div className="flex items-center">
-                  <div className="w-1/3">
-                    <Image
-                      src="/assets/images/book2.jpg"
-                      alt="Book"
-                      width={150}
-                      height={150}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                  <div className="ml-3">
-                    <a className="text-sm font-bold">
-                      Understand the Concepts With Orthodox Interpretation.
-                    </a>
-                    <div className="flex items-center mt-2">
-                      <CalendarDaysIcon className="mr-2" />
-                      <p>22 Jul 2019</p>
-                    </div>
-                  </div>
+        {/* Blog Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-8">
+          {blogs.map((blog) => (
+            <div
+              key={blog.id}
+              className="bg-white flex flex-col items-start rounded-lg shadow hover:shadow-lg transition overflow-hidden"
+            >
+              <div className="w-full aspect-video relative">
+                <Image
+                  src={blog.image}
+                  alt={blog.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6 flex-1 flex flex-col justify-between items-start">
+                <div>
+                  <p className="text-gray-500 text-sm mb-2 line-clamp-1">
+                    {blog.date}
+                  </p>
+                  <h3 className="text-xl font-semibold mb-3 line-clamp-2">
+                    {blog.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                    {blog.description}
+                  </p>
                 </div>
-                <div className="flex items-center">
-                  <div className="w-1/3">
-                    <Image
-                      src="/assets/images/book2.jpg"
-                      alt="Book"
-                      width={150}
-                      height={150}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                  <div className="ml-3">
-                    <a className="text-sm font-bold">
-                      Understand the Concepts With Orthodox Interpretation.
-                    </a>
-                    <div className="flex items-center mt-2">
-                      <CalendarDaysIcon className="mr-2" />
-                      <p>22 Jul 2019</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-1/3">
-                    <Image
-                      src="/assets/images/book2.jpg"
-                      alt="Book"
-                      width={150}
-                      height={150}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                  <div className="ml-3">
-                    <a className="text-sm font-bold">
-                      Understand the Concepts With Orthodox Interpretation.
-                    </a>
-                    <div className="flex items-center mt-2">
-                      <CalendarDaysIcon className="mr-2" />
-                      <p>22 Jul 2019</p>
-                    </div>
-                  </div>
-                </div>
+                <Button>Read More</Button>
               </div>
             </div>
-          </div>
+          ))}
         </div>
-      </section>
+      </div>
     </div>
   );
 }

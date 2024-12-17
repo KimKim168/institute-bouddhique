@@ -63,7 +63,7 @@ export default function Page() {
         <h1
           className={`text-3xl lg:text-4xl text-red-900 text-center mb-6  ${koulen.className}`}
         >
-          ព័ត៌មានថ្មីៗ
+          នាទីព្រះពុទ្ធសាសនា
         </h1>
 
         {/* Blog Grid */}

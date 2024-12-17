@@ -1,14 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
 
-import Link from "next/link";
 import MySlider from "@/components/my-slide";
 
-export default function page() {
-  const totalItems = 5;
+import { Koulen } from "next/font/google";
 
+const koulen = Koulen({ subsets: ["khmer"], weight: ["400"] });
+
+export default function page() {
   return (
     <>
       {" "}
@@ -24,11 +24,40 @@ export default function page() {
               {/* <h6 className="text-gray-600 uppercase text-xs md:text-sm xl:text-lg text-color1">
                 Vision
               </h6> */}
-              <h1 className="text-3xl md:text-4xl xl:text-5xl font-bold text-color leading-tight">
-                Our Core Vision and Mission
+              <h1
+                className={`text-3xl md:text-4xl xl:text-5xl text-red-900 leading-tight ${koulen.className}`}
+              >
+                អំពីវិទ្យាស្ថាន
               </h1>
             </div>
-            <div className="mb-6">
+            <div className="space-y-4">
+              {/* Address */}
+              <div className="text-blue flex items-start gap-2">
+                <Image
+                  src="/assets/images/location.png"
+                  width={24}
+                  height={24}
+                  alt="Location Icon"
+                  className="min-w-6"
+                />
+                <p className="text-sm">
+                  HW4P+78C, Preah Sisowath Quay, Phnom Penh 12301
+                </p>
+              </div>
+              {/* Phone */}
+              <div className="text-blue flex items-center gap-2">
+                <Image
+                  src="/assets/images/telephone.png"
+                  width={24}
+                  height={24}
+                  alt="Phone Icon"
+                  className="min-w-6"
+                />
+                <p className="text-sm">016 535 683</p>
+              </div>
+              {/* Email */}
+            </div>
+            <div className="mb-6 mt-4">
               <h6 className="mb-2 text-xs md:text-sm xl:text-lg text-color1">
                 Vision
               </h6>
@@ -60,72 +89,6 @@ export default function page() {
               height={3000}
               className="w-full rounded-lg shadow-lg border-l-[#921b1f] bg-white border-l-[10px] rounded-l-lg py-1 pr-1"
             />
-          </div>
-        </div>
-      </section>
-      {/*End  */}
-      {/*Start  */}
-      <section className="relative max-w-screen-2xl mx-auto w-full py-16 px-10">
-        <div className="container ">
-          <div className="text-center mb-12">
-            {/* <span className="block text-gray-400 uppercase text-sm">Team</span> */}
-            <h1 className="text-4xl font-bold text-color">
-              Our Leadership <br /> Team
-            </h1>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Team Member 1 */}
-            <div className="rounded-lg overflow-hidden shadow-lg text-center">
-              <Image
-                src="/assets/images/team1.jpg"
-                alt="Tyler Lee"
-                width={2000}
-                height={2000}
-                className="w-full aspect-square object-cover"
-              />
-              <div className="p-4">
-                <h4 className="text-color text-lg font-semibold">Tyler Lee</h4>
-                <p className="text-color3">Leadership Council</p>
-              </div>
-            </div>
-            {/* Team Member 1 */}
-            <div className="rounded-lg overflow-hidden shadow-lg text-center">
-              <Image
-                src="/assets/images/team1.jpg"
-                alt="Tyler Lee"
-                width={2000}
-                height={2000}
-                className="w-full aspect-square object-cover"
-              />
-              <div className="p-4">
-                <h4 className="text-color text-lg font-semibold">Tyler Lee</h4>
-                <p className="text-color3">Leadership Council</p>
-              </div>
-            </div>
-            {/* Team Member 1 */}
-            <div className="rounded-lg overflow-hidden shadow-lg text-center">
-              <Image
-                src="/assets/images/team1.jpg"
-                alt="Tyler Lee"
-                width={2000}
-                height={2000}
-                className="w-full aspect-square object-cover"
-              />
-              <div className="p-4">
-                <h4 className="text-color text-lg font-semibold">Tyler Lee</h4>
-                <p className="text-color3">Leadership Council</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-12 text-center">
-            <Link
-              href="/leadership"
-              className="bg-color text-white py-4 px-6 rounded-lg hover-bg-color transition"
-            >
-              View All Team
-            </Link>
           </div>
         </div>
       </section>

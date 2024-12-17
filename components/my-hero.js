@@ -2,12 +2,15 @@ import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
+import { Koulen } from "next/font/google";
+
+const koulen = Koulen({ subsets: ["khmer"], weight: ["400"] });
 
 function MyHero() {
   return (
     <div className="mt-8 md:mt-12">
-      <p className="text-center mb-6 text-xl md:text-3xl xl:text-4xl font-semibold text-red-600">
-        About
+    <p className={`text-center mb-6 text-xl md:text-3xl xl:text-4xl  text-red-900 ${koulen.className}`}>
+      ប្រជុំរឿងព្រេងខ្មែរ
       </p>
       <Card className="border-none grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 px-4 xl:px-20 gap-8">
         {/* Card 1 */}

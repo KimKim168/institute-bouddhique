@@ -2,6 +2,9 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Koulen } from "next/font/google";
+
+const koulen = Koulen({ subsets: ["khmer"], weight: ["400"] });
 
 function ResponsiveSection({ title, description, image, reverse }) {
   return (
@@ -63,8 +66,10 @@ function MyHomePageButtom() {
 
   return (
     <section className="my-16">
-      <h1 className="text-center text-2xl md:text-4xl font-bold text-red-600 mb-10">
-        Buttom Design Example
+      <h1
+        className={`text-center mb-6 text-xl md:text-3xl xl:text-4xl  text-red-900 ${koulen.className}`}
+      >
+        បណ្ណាល័យ
       </h1>
       {sections.map((section, index) => (
         <ResponsiveSection

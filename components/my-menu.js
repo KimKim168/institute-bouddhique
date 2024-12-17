@@ -41,8 +41,8 @@ function MyMenu() {
                   href="/"
                   className={`py-2 rounded ${
                     pathname === "/"
-                      ? "underline underline-offset-4 text-red-500"
-                      : "text-black "
+                      ? "underline text-red-600 "
+                      : "text-black hover:underline"
                   }`}
                 >
                   ទំព័រដើម
@@ -53,8 +53,8 @@ function MyMenu() {
                   href="/client/news"
                   className={`py-2 rounded ${
                     pathname === "/client/news"
-                      ? "underline underline-offset-4 text-red-500 "
-                      : "text-black"
+                      ? "underline text-red-600 "
+                      : "text-black hover:underline"
                   }`}
                 >
                   ព័ត៌មានថ្មីៗ
@@ -65,8 +65,8 @@ function MyMenu() {
                   href="/client/about"
                   className={`py-2 rounded ${
                     pathname === "/client/about"
-                      ? "underline underline-offset-4 text-red-500"
-                      : "text-black"
+                      ? "underline text-red-600 "
+                      : "text-black hover:underline"
                   }`}
                 >
                   អំពីវិទ្យាស្ថាន
@@ -74,11 +74,11 @@ function MyMenu() {
               </li>
               <li>
                 <a
-                  href="/contact"
+                  href="/client/khmer-legends"
                   className={`py-2 rounded ${
-                    pathname === "/contact"
-                      ? "underline underline-offset-4 text-red-500"
-                      : "text-black"
+                    pathname === "/client/khmer-legends"
+                      ? "underline text-red-600 "
+                      : "text-black hover:underline"
                   }`}
                 >
                   ប្រជុំរឿងព្រេងខ្មែរ
@@ -86,11 +86,11 @@ function MyMenu() {
               </li>
               <li>
                 <a
-                  href="/video-gallery"
+                  href="/client/libraries"
                   className={`py-2 rounded ${
-                    pathname === "/video-gallery"
-                      ? "underline underline-offset-4 text-red-500"
-                      : "text-black"
+                    pathname === "/client/libraries"
+                      ? "underline text-red-600 "
+                      : "text-black hover:underline"
                   }`}
                 >
                   បណ្ណាល័យ
@@ -98,11 +98,11 @@ function MyMenu() {
               </li>
               <li>
                 <a
-                  href="/about"
+                  href="/client/magazine"
                   className={`py-2 rounded ${
-                    pathname === "/about"
-                      ? "underline underline-offset-4 text-red-500"
-                      : "text-black"
+                    pathname === "/client/magazine"
+                      ? "underline text-red-600 "
+                      : "text-black hover:underline"
                   }`}
                 >
                   ទស្សនាវដ្ដីកម្ពុជសុរិយា
@@ -110,11 +110,11 @@ function MyMenu() {
               </li>
               <li>
                 <a
-                  href="/about"
+                  href="/client/buddhist"
                   className={`py-2 rounded ${
-                    pathname === "/about"
-                      ? "underline underline-offset-4 text-red-500"
-                      : "text-black"
+                    pathname === "/client/buddhist"
+                      ? "underline text-red-600 "
+                      : "text-black hover:underline"
                   }`}
                 >
                   នាទីព្រះពុទ្ធសាសនា

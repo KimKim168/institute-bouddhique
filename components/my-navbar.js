@@ -172,9 +172,9 @@ const Navbar = () => {
           </li>
           <li>
             <a
-              href="/contact"
+              href="/client/khmer-legends"
               className={`py-2 rounded ${
-                pathname === "/contact"
+                pathname === "/client/khmer-legends"
                   ? "underline text-white "
                   : "text-white hover:underline"
               }`}
@@ -184,9 +184,9 @@ const Navbar = () => {
           </li>
           <li>
             <a
-              href="/video-gallery"
+              href="/client/libraries"
               className={`py-2 rounded ${
-                pathname === "/video-gallery"
+                pathname === "/client/libraries"
                   ? "underline text-white "
                   : "text-white hover:underline"
               }`}
@@ -196,9 +196,9 @@ const Navbar = () => {
           </li>
           <li>
             <a
-              href="/about"
+              href="/client/magazine"
               className={`py-2 rounded ${
-                pathname === "/about"
+                pathname === "/client/magazine"
                   ? "underline text-white "
                   : "text-white hover:underline"
               }`}
@@ -208,9 +208,9 @@ const Navbar = () => {
           </li>
           <li>
             <a
-              href="/about1"
+              href="/client/buddhist"
               className={`py-2 rounded ${
-                pathname === "/about1"
+                pathname === "/client/buddhist"
                   ? "underline text-white "
                   : "text-white hover:underline"
               }`}
