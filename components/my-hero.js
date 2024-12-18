@@ -1,95 +1,83 @@
-import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import Link from "next/link";
+"use client";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
+
 import { Koulen } from "next/font/google";
 
 const koulen = Koulen({ subsets: ["khmer"], weight: ["400"] });
+export default function MyHero() {
+  const blogs = [
+    {
+      id: 1,
+      title: "Exploring the Beauty of Modern Design",
+      description:
+        "An insight into how modern design trends shape user experiences.",
+      image: "/assets/images/book1.jpg",
+    },
+    {
+      id: 2,
+      title: "The Rise of AI in Everyday Applications",
+      description:
+        "Learn how artificial intelligence is being integrated into daily tools.",
+      image: "/assets/images/book1.jpg",
+    },
+    {
+      id: 3,
+      title: "Sustainability in Web Development",
+      description:
+        "Discover eco-friendly approaches in software and web development.",
+      image: "/assets/images/book1.jpg",
+    },
+    {
+      id: 4,
+      title: "Innovations in Mobile Technology",
+      description:
+        "A look at the latest breakthroughs in mobile devices and platforms.",
+      image: "/assets/images/book1.jpg",
+    },
+  ];
 
-function MyHero() {
   return (
-    <div className="mt-8 md:mt-12">
-    <p className={`text-center mb-6 text-xl md:text-3xl xl:text-4xl  text-red-900 ${koulen.className}`}>
-      ប្រជុំរឿងព្រេងខ្មែរ
-      </p>
-      <Card className="border-none grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 px-4 xl:px-20 gap-8">
-        {/* Card 1 */}
-        <CardContent className="bg-white p-2 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300 ease-in-out">
-          <Link
-            href="/client/about"
-            className="block relative rounded-lg overflow-hidden group"
-          >
-            <Image
-              className="rounded-lg w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
-              src="/assets/images/slide3.webp"
-              width={3000}
-              height={3000}
-              alt="Image 1"
-            />
-            <div className="py-4">
-              <h5 className="mb-2 text-lg font-semibold text-gray-900 group-hover:text-red-600 transition-colors duration-300">
-                Icon Ashram A spiritual hermitage
-              </h5>
-              <p className="text-sm font-light text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
-                Icon Ashram A spiritual hermitage in green valleys of the
-                mountains where you can see millions of stars at night.
-              </p>
-            </div>
-          </Link>
-        </CardContent>
+    <div className={`max-w-screen-xl mx-auto `}>
+      {/* Content Section */}
+      <div className="max-w-screen-xl mx-auto px-4 lg:px-0 py-16">
+        {/* Heading */}
+        <h1
+          className={`text-3xl lg:text-4xl text-red-900 text-center mb-6  ${koulen.className}`}
+        >
+          ប្រជុំរឿងព្រេងខ្មែរ
+        </h1>
 
-        {/* Card 2 */}
-        <CardContent className="bg-white p-2 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300 ease-in-out">
-          <Link
-            href="#"
-            className="block relative rounded-lg overflow-hidden group"
-          >
-            <Image
-              className="rounded-lg w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
-              src="/assets/images/slide2.webp"
-              width={3000}
-              height={3000}
-              alt="Image 2"
-            />
-            <div className="py-4">
-              <h5 className="mb-2 text-lg font-semibold text-gray-900 group-hover:text-red-600 transition-colors duration-300">
-                Icon Ashram A spiritual hermitage
-              </h5>
-              <p className="text-sm font-light text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
-                Icon Ashram A spiritual hermitage in green valleys of the
-                mountains where you can see millions of stars at night.
-              </p>
+        {/* Blog Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-8">
+          {blogs.map((blog) => (
+            <div
+              key={blog.id}
+              className="bg-white flex flex-col items-start rounded-lg shadow hover:shadow-lg transition overflow-hidden"
+            >
+              <div className="w-full aspect-video relative">
+                <Image
+                  src={blog.image}
+                  alt={blog.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6 flex-1 flex flex-col justify-between items-start">
+                <div>
+                  <h3 className="text-xl font-semibold mb-3 line-clamp-2">
+                    {blog.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                    {blog.description}
+                  </p>
+                </div>
+                <Button>Read More</Button>
+              </div>
             </div>
-          </Link>
-        </CardContent>
-
-        {/* Card 3 */}
-        <CardContent className="bg-white p-2 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300 ease-in-out">
-          <Link
-            href="#"
-            className="block relative rounded-lg overflow-hidden group"
-          >
-            <Image
-              className="rounded-lg w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
-              src="/assets/images/slide1.webp"
-              width={3000}
-              height={3000}
-              alt="Image 3"
-            />
-            <div className="py-4">
-              <h5 className="mb-2 text-lg font-semibold text-gray-900 group-hover:text-red-600 transition-colors duration-300">
-                Icon Ashram A spiritual hermitage
-              </h5>
-              <p className="text-sm font-light text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
-                Icon Ashram A spiritual hermitage in green valleys of the
-                mountains where you can see millions of stars at night.
-              </p>
-            </div>
-          </Link>
-        </CardContent>
-      </Card>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
-
-export default MyHero;

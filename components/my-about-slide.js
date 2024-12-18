@@ -1,9 +1,8 @@
-"use client";
 import React, { useState, useEffect } from "react";
 import { Carousel, CarouselContent } from "./ui/carousel";
 import Image from "next/image";
 
-export default function MySlider() {
+export default function MyAboutSlider() {
   const [images, setImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -12,7 +11,7 @@ export default function MySlider() {
     const fetchSlides = async () => {
       try {
         const response = await fetch(
-          "http://127.0.0.1:8000/api/slides?position=home_slides"
+          "http://127.0.0.1:8000/api/slides?position=about_slide"
         );
         const result = await response.json();
         setImages(result.slides || []);

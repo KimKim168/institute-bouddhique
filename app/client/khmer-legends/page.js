@@ -14,7 +14,6 @@ export default function Page() {
       description:
         "An insight into how modern design trends shape user experiences.",
       image: "/assets/images/book1.jpg",
-      date: "Dec 1, 2024",
     },
     {
       id: 2,
@@ -22,7 +21,6 @@ export default function Page() {
       description:
         "Learn how artificial intelligence is being integrated into daily tools.",
       image: "/assets/images/book1.jpg",
-      date: "Nov 25, 2024",
     },
     {
       id: 3,
@@ -30,7 +28,6 @@ export default function Page() {
       description:
         "Discover eco-friendly approaches in software and web development.",
       image: "/assets/images/book1.jpg",
-      date: "Nov 18, 2024",
     },
     {
       id: 4,
@@ -38,7 +35,6 @@ export default function Page() {
       description:
         "A look at the latest breakthroughs in mobile devices and platforms.",
       image: "/assets/images/book1.jpg",
-      date: "Nov 10, 2024",
     },
   ];
 
@@ -63,7 +59,7 @@ export default function Page() {
         <h1
           className={`text-3xl lg:text-4xl text-red-900 text-center mb-6  ${koulen.className}`}
         >
-          ព័ត៌មានថ្មីៗ
+          ប្រជុំរឿងព្រេងខ្មែរ
         </h1>
 
         {/* Blog Grid */}
@@ -83,9 +79,7 @@ export default function Page() {
               </div>
               <div className="p-6 flex-1 flex flex-col justify-between items-start">
                 <div>
-                  <p className="text-gray-500 text-sm mb-2 line-clamp-1">
-                    {blog.date}
-                  </p>
+                 
                   <h3 className="text-xl font-semibold mb-3 line-clamp-2">
                     {blog.title}
                   </h3>

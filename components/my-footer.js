@@ -3,6 +3,7 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import { Koulen } from "next/font/google";
 
+
 const koulen = Koulen({ subsets: ["khmer"], weight: ["400"] });
 
 function MyFooter() {

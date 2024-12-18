@@ -1,5 +1,3 @@
-"use client";
-
 import MySlider from "@/components/my-slide";
 import MyHero from "@/components/my-hero";
 import MyHomePageButtom from "@/components/my-home-page-buttom";

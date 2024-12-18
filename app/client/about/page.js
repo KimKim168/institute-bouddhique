@@ -2,9 +2,8 @@
 
 import Image from "next/image";
 
-import MySlider from "@/components/my-slide";
-
 import { Koulen } from "next/font/google";
+import MyAboutSlider from "@/components/my-about-slide";
 
 const koulen = Koulen({ subsets: ["khmer"], weight: ["400"] });
 
@@ -13,7 +12,7 @@ export default function page() {
     <>
       {" "}
       {/* Slide */}
-      <MySlider />
+      <MyAboutSlider />
       {/*End Slide */}
       {/*Start */}
       <section className="bg-white px-10 py-20">

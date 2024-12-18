@@ -1,10 +1,9 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import { PhoneCall } from "lucide-react";
 import { Koulen } from "next/font/google";
-import MyMenu from "./my-menu";
 import { usePathname } from "next/navigation";
+import MyLink from "./my-link";
 
 const koulen = Koulen({ subsets: ["khmer"], weight: ["400"] });
 
@@ -71,26 +70,7 @@ const Navbar = () => {
 
           {/* Contact & Socials */}
           <div className="hidden md:col-span-4 md:flex justify-end items-center space-x-2">
-            <div className="hidden lg:flex items-center bg-color2 px-4 py-2 rounded-full">
-              <span className="mr-2">
-                <PhoneCall className="w-4 h-4" />
-              </span>
-              <span>*** *** ***</span>
-            </div>
-            {socialMedia.map(({ image, href }, idx) => (
-              <a key={idx} href={href}>
-                <Image
-                  src={image}
-                  alt="Social Icon"
-                  width={30}
-                  height={30}
-                  className="text-white"
-                />
-              </a>
-            ))}
-            <div className="lg:hidden flex">
-              <MyMenu />
-            </div>
+            <MyLink />
           </div>
         </div>
 
@@ -102,19 +82,8 @@ const Navbar = () => {
             height={70}
             alt="Logo"
           />
-          <div className="flex ">
-            {socialMedia.map(({ image, href }, idx) => (
-              <a key={idx} href={href}>
-                <Image
-                  src={image}
-                  alt="Social Icon"
-                  width={35}
-                  height={35}
-                  className="text-white mr-2"
-                />
-              </a>
-            ))}
-            <MyMenu />
+          <div>
+            <MyLink />
           </div>
         </div>
       </nav>
