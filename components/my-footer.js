@@ -101,8 +101,15 @@ function MyFooter() {
             </a>
           </li>
         </ul>
-        <div className="text-white flex justify-center text-[10px] md:text-sm mt-2">
-          © 2024. All Rights Reserved.
+        <div className="text-white flex justify-center text-[10px] md:text-sm py-4">
+          <p className="pr-2 border-r-2">© 2024. All Rights Reserved.</p>
+          <a
+            href="https://www.corasolution.com/"
+            target="_blank"
+            className="hover:cursor-pointer pl-2"
+          >
+            Developed By: Cora Soft
+          </a>
         </div>
       </footer>
     </>

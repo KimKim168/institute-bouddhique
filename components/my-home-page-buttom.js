@@ -1,72 +1,73 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { Koulen } from "next/font/google";
 
 const koulen = Koulen({ subsets: ["khmer"], weight: ["400"] });
 
-function ResponsiveSection({ title, description, image, reverse }) {
-  return (
-    <Link href="/client/about">
-      <div
-        className={`flex flex-col-reverse sm:flex-row items-center justify-between gap-8 px-6 lg:px-16 py-10 ${
-          reverse ? "sm:flex-row-reverse" : ""
-        }`}
-      >
-        {/* Text Section */}
-        <div className="text-center lg:text-left lg:max-w-lg">
-          <h2 className="text-xl md:text-3xl xl:text-4xl font-extrabold text-gray-900 dark:text-white mb-4">
-            {title}
-          </h2>
-          <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg">
-            {description}
-          </p>
-        </div>
-
-        {/* Image Section */}
-        <div className="w-full lg:w-1/2">
-          <Image
-            src={image}
-            alt="Descriptive Alt Text"
-            width={1200}
-            height={800}
-            className="w-full aspect-video object-cover h-auto rounded-lg shadow-md py-1 pr-1 border-l-[#921b1f] bg-white border-l-[10px] rounded-l-lg"
-          />
-        </div>
-      </div>
-    </Link>
-  );
-}
-
 function MyHomePageButtom() {
-  const sections = [
-    {
-      title: "Payments tool for software companies",
-      description:
-        "From checkout to global sales tax compliance, companies around the world use Flowbite to simplify their payment stack.",
-      image: "/assets/images/slide7.webp",
-      reverse: false,
-    },
-  ];
+  const [data, setData] = useState(null); // Initially set data to null
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchLibrary = async () => {
+      try {
+        const response = await fetch(
+          "http://127.0.0.1:8000/api/pages/?position=library"
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        const result = await response.json();
+        setData(result); // Set the fetched data
+      } catch (error) {
+        setError(error.message); // Set error message in case of failure
+      } finally {
+        setLoading(false); // Set loading to false once the request completes
+      }
+    };
+
+    fetchLibrary();
+  }, []);
 
   return (
-    <section className="my-16">
+    <div className={`max-w-screen-2xl mx-auto px-2 xl:px-16 mt-5 md:mt-12 `}>
       <h1
-        className={`text-center mb-6 text-xl md:text-3xl xl:text-4xl  text-red-900 ${koulen.className}`}
+        className={`text-center mb-6 text-xl md:text-3xl  text-red-900 ${koulen.className}`}
       >
         បណ្ណាល័យ
       </h1>
-      {sections.map((section, index) => (
-        <ResponsiveSection
-          key={index}
-          title={section.title}
-          description={section.description}
-          image={section.image}
-          reverse={section.reverse}
-        />
+      {data?.map((item, index) => (
+        <div
+          key={item.id}
+          className={`flex flex-col sm:flex-row ${
+            index % 2 === 0 ? "sm:flex-row-reverse" : ""
+          } items-center justify-between gap-5 lg:gap-10 mt-10`}
+        >
+          {/* Text Section */}
+          <div className="flex-1 text-center md:text-left">
+            <h2 className="text-xl lg:text-3xl font-extrabold text-gray-900 dark:text-white mb-2">
+              {item.name}
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 text-base lg:text-lg">
+              {item.short_description}
+            </p>
+          </div>
+
+          {/* Image Section */}
+          <div className="flex-1">
+            <Image
+              src={`http://127.0.0.1:8000/assets/images/pages/${item.image}`}
+              width={500}
+              height={500}
+              alt="Descriptive Alt Text"
+              className="w-full aspect-video object-cover rounded-lg shadow-md py-1 pr-1 border-l-[#921b1f] bg-white border-l-[10px] rounded-l-lg"
+            />
+          </div>
+        </div>
       ))}
-    </section>
+    </div>
   );
 }
 
