@@ -3,7 +3,6 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import { Koulen } from "next/font/google";
 
-
 const koulen = Koulen({ subsets: ["khmer"], weight: ["400"] });
 
 function MyFooter() {
@@ -12,9 +11,9 @@ function MyFooter() {
   return (
     <>
       {" "}
-      <footer className="bg-color-bold  p-10">
+      <footer className="bg-color-bold  pt-5 mt-10">
         <ul
-          className={`flex justify-center text-[8px] md:text-sm xl:text-base space-x-2 sm:space-x-4 mt-4  lg:space-x-8 lg:mt-0 ${koulen.className}`}
+          className={`flex justify-center text-[10px] md:text-sm xl:text-base space-x-2 sm:space-x-4 mt-4  lg:space-x-8 lg:mt-0 ${koulen.className}`}
         >
           <li>
             <a
@@ -40,18 +39,7 @@ function MyFooter() {
               ព័ត៌មានថ្មីៗ
             </a>
           </li>
-          <li>
-            <a
-              href="/client/about"
-              className={`py-2 rounded ${
-                pathname === "/client/about"
-                  ? "underline text-white "
-                  : "text-white hover:underline"
-              }`}
-            >
-              អំពីវិទ្យាស្ថាន
-            </a>
-          </li>
+
           <li>
             <a
               href="/client/khmer-legends"
@@ -100,8 +88,20 @@ function MyFooter() {
               នាទីព្រះពុទ្ធសាសនា
             </a>
           </li>
+          <li>
+            <a
+              href="/client/about"
+              className={`py-2 rounded ${
+                pathname === "/client/about"
+                  ? "underline text-white "
+                  : "text-white hover:underline"
+              }`}
+            >
+              អំពីវិទ្យាស្ថាន
+            </a>
+          </li>
         </ul>
-        <div className="text-white flex justify-center text-[10px] md:text-sm mt-5">
+        <div className="text-white flex justify-center text-[10px] md:text-sm mt-2">
           © 2024. All Rights Reserved.
         </div>
       </footer>

@@ -15,6 +15,7 @@ export default function MySlider() {
           "http://127.0.0.1:8000/api/slides?position=home_slides"
         );
         const result = await response.json();
+        console.log(result);
         setImages(result.slides || []);
       } catch (error) {
         console.error("Failed to fetch slides:", error);
@@ -56,7 +57,7 @@ export default function MySlider() {
                   alt={`Slide ${index + 1}`}
                   width={2100}
                   height={1280}
-                  className="w-full object-cover aspect-[21/9]"
+                  className="w-full object-cover aspect-[21/7]"
                 />
               </div>
             ))}

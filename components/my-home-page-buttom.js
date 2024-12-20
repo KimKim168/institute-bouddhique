@@ -48,20 +48,6 @@ function MyHomePageButtom() {
       image: "/assets/images/slide7.webp",
       reverse: false,
     },
-    {
-      title: "Simplify your workflow with advanced tools",
-      description:
-        "With a modern toolset and integrations, managing your operations has never been easier.",
-      image: "/assets/images/slide2.webp",
-      reverse: true,
-    },
-    {
-      title: "Explore new horizons with innovation",
-      description:
-        "Revolutionize the way you do business with cutting-edge solutions tailored for your needs.",
-      image: "/assets/images/slide3.webp",
-      reverse: false,
-    },
   ];
 
   return (

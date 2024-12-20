@@ -60,18 +60,7 @@ function MyMenu() {
                   ព័ត៌មានថ្មីៗ
                 </a>
               </li>
-              <li>
-                <a
-                  href="/client/about"
-                  className={`py-2 rounded ${
-                    pathname === "/client/about"
-                      ? "underline text-red-600 "
-                      : "text-black hover:underline"
-                  }`}
-                >
-                  អំពីវិទ្យាស្ថាន
-                </a>
-              </li>
+
               <li>
                 <a
                   href="/client/khmer-legends"
@@ -120,6 +109,18 @@ function MyMenu() {
                   នាទីព្រះពុទ្ធសាសនា
                 </a>
               </li>
+              <li>
+                <a
+                  href="/client/about"
+                  className={`py-2 rounded ${
+                    pathname === "/client/about"
+                      ? "underline text-red-600 "
+                      : "text-black hover:underline"
+                  }`}
+                >
+                  អំពីវិទ្យាស្ថាន
+                </a>
+              </li>
             </ul>
           </SheetHeader>
           <div className="flex flex-col min-h-[55%]">
@@ -130,7 +131,7 @@ function MyMenu() {
             <SheetFooter className="py-4 border-t border-gray-200">
               <div className="flex justify-start items-center space-x-1">
                 <PhoneCallIcon className="mr-1 md:mr-2 w-5 md:w-5" />
-                <p className="text-[16px]">*** *** ***</p>
+                <p className="text-[16px]">016 535 683</p>
               </div>
             </SheetFooter>
           </div>

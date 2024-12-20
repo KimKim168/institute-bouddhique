@@ -1,97 +1,95 @@
 "use client";
-
-import Image from "next/image";
-
 import { Koulen } from "next/font/google";
-import MyAboutSlider from "@/components/my-about-slide";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const koulen = Koulen({ subsets: ["khmer"], weight: ["400"] });
 
-export default function page() {
+export default function Page() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/api/contact");
+        if (!response.ok) throw new Error("Failed to fetch data");
+        const result = await response.json();
+        setData(result);
+      } catch (err) {
+        console.error(err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+
   return (
-    <>
-      {" "}
-      {/* Slide */}
-      <MyAboutSlider />
-      {/*End Slide */}
-      {/*Start */}
-      <section className="bg-white px-10 py-20">
-        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          {/* <!-- Text Content --> */}
-          <div>
-            <div className="mb-6">
-              {/* <h6 className="text-gray-600 uppercase text-xs md:text-sm xl:text-lg text-color1">
-                Vision
-              </h6> */}
-              <h1
-                className={`text-3xl md:text-4xl xl:text-5xl text-red-900 leading-tight ${koulen.className}`}
-              >
-                អំពីវិទ្យាស្ថាន
-              </h1>
-            </div>
-            <div className="space-y-4">
-              {/* Address */}
-              <div className="text-blue flex items-start gap-2">
+    <section className=" px-4 py-10 md:px-10 md:py-20 bg-white">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Text Content */}
+        <div>
+          <h1
+            className={`text-xl md:text-3xl text-red-900 ${koulen.className}`}
+          >
+            អំពីវិទ្យាស្ថាន
+          </h1>
+          <div className="mt-4 space-y-3">
+            <>
+              <div className="flex items-center gap-2">
                 <Image
                   src="/assets/images/location.png"
                   width={24}
                   height={24}
-                  alt="Location Icon"
-                  className="min-w-6"
+                  alt="Location"
                 />
-                <p className="text-sm">
-                  HW4P+78C, Preah Sisowath Quay, Phnom Penh 12301
-                </p>
+                <a
+                  href={data.link_location_first}
+                  className="text-blue-500 hover:underline"
+                >
+                  {data.location_first}
+                </a>
               </div>
-              {/* Phone */}
-              <div className="text-blue flex items-center gap-2">
+              <div className="flex items-center gap-2">
                 <Image
                   src="/assets/images/telephone.png"
                   width={24}
                   height={24}
-                  alt="Phone Icon"
-                  className="min-w-6"
+                  alt="Phone"
                 />
-                <p className="text-sm">016 535 683</p>
+                <p>{data.phone_number}</p>
               </div>
-              {/* Email */}
-            </div>
-            <div className="mb-6 mt-4">
-              <h6 className="mb-2 text-xs md:text-sm xl:text-lg text-color1">
-                Vision
-              </h6>
-              <p className="text-gray-700">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
-                nostrud exerci tation ullamcorper.
-              </p>
-            </div>
-            <div>
-              <h6 className="  mb-2 text-xs md:text-sm xl:text-lg text-color1">
-                Mission
-              </h6>
-              <p className="text-gray-700">
-                Ut wisi enim ad minim veniam, quis nostrud exerci tation
-                ullamcorper. Suscipit lobortis nisl ut aliquip ex ea commodo
-                consequat. Duis autem vel eum iriure dolor.
-              </p>
-            </div>
-          </div>
-
-          {/* <!-- Image Content --> */}
-          <div className="flex justify-center ">
-            <Image
-              src="/assets/images/book3.jpg"
-              alt="Core Vision and Mission"
-              width={3000}
-              height={3000}
-              className="w-full rounded-lg shadow-lg border-l-[#921b1f] bg-white border-l-[10px] rounded-l-lg py-1 pr-1"
-            />
+              <div className="flex items-center gap-2">
+                <Image
+                  src="/assets/images/gmail.png"
+                  width={24}
+                  height={24}
+                  alt="Phone"
+                />
+                <p>{data.email}</p>
+              </div>
+            </>
           </div>
         </div>
-      </section>
-      {/*End  */}
-    </>
+        {/* Image Content */}
+        <div className="flex justify-center">
+          <a href={data.link_location_first} target="_blank">
+            <Image
+              src={`http://127.0.0.1:8000/assets/images/contacts/${data.image_first}`}
+              alt="Map"
+              width={500}
+              height={500}
+              className="rounded-lg shadow-lg"
+            />
+          </a>
+        </div>
+      </div>
+    </section>
   );
 }

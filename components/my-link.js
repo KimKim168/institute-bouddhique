@@ -6,45 +6,54 @@ import MyMenu from "./my-menu";
 
 function MyLink() {
   const [socialMedia, setSocialMedia] = useState([]);
+  const [contact, setContact] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    const fetchLinks = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8000/api/links");
-        const result = await response.json();
-        setSocialMedia(result.data);
+        // Fetch social media links
+        const socialMediaResponse = await fetch(
+          "http://127.0.0.1:8000/api/links"
+        );
+        if (!socialMediaResponse.ok)
+          throw new Error("Failed to fetch social media links");
+
+        const socialMediaData = await socialMediaResponse.json();
+        setSocialMedia(socialMediaData.data);
+
+        // Fetch contact information
+        const contactResponse = await fetch(
+          "http://127.0.0.1:8000/api/contact"
+        );
+        if (!contactResponse.ok)
+          throw new Error("Failed to fetch contact information");
+
+        const contactData = await contactResponse.json();
+        setContact(contactData);
       } catch (err) {
-        console.error("Failed to fetch social media links:", err);
+        console.error("Failed to fetch data:", err);
         setError(true);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchLinks();
+    fetchData();
   }, []);
-
-  if (loading) {
-    return <div>Loading social media links...</div>;
-  }
-
-  if (error) {
-    return (
-      <div>Failed to load social media links. Please try again later.</div>
-    );
-  }
 
   return (
     <div className="flex justify-end items-center space-x-2">
       {/* Phone Section */}
-      <div className="hidden lg:flex items-center bg-color2 px-4 py-2 rounded-full">
-        <span className="mr-2">
-          <PhoneCall className="w-4 h-4" />
-        </span>
-        <span>016 535 683</span> {/* Replace with a dynamic number if needed */}
-      </div>
+      {contact.phone_number && (
+        <div className="flex text-[10px] sm:text-[11px] md:text-[12px] items-center bg-color2 px-1.5 py-2 rounded-full">
+          <span className="mr-1">
+            <PhoneCall className="w-4 h-4" />
+          </span>
+          <span>{contact.phone_number}</span>
+        </div>
+      )}
 
       {/* Social Media Links */}
       {socialMedia.map(({ image, link }, id) => (

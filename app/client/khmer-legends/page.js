@@ -1,95 +1,98 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
-
 import { Koulen } from "next/font/google";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { Search } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const koulen = Koulen({ subsets: ["khmer"], weight: ["400"] });
+
 export default function Page() {
-  const imageUrls = ["/assets/images/slide2.webp"];
-  const blogs = [
-    {
-      id: 1,
-      title: "Exploring the Beauty of Modern Design",
-      description:
-        "An insight into how modern design trends shape user experiences.",
-      image: "/assets/images/book1.jpg",
-    },
-    {
-      id: 2,
-      title: "The Rise of AI in Everyday Applications",
-      description:
-        "Learn how artificial intelligence is being integrated into daily tools.",
-      image: "/assets/images/book1.jpg",
-    },
-    {
-      id: 3,
-      title: "Sustainability in Web Development",
-      description:
-        "Discover eco-friendly approaches in software and web development.",
-      image: "/assets/images/book1.jpg",
-    },
-    {
-      id: 4,
-      title: "Innovations in Mobile Technology",
-      description:
-        "A look at the latest breakthroughs in mobile devices and platforms.",
-      image: "/assets/images/book1.jpg",
-    },
-  ];
+  const [legend, setLegend] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchLegend = async () => {
+      try {
+        const response = await fetch(
+          "http://127.0.0.1:8000/api/pages?position=khmer_legend"
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch news");
+        }
+        const result = await response.json();
+        setLegend(result);
+      } catch (err) {
+        console.error(err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLegend();
+  }, []);
+
+  if (loading) {
+    return <div className="text-center py-10">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="text-center py-10 text-red-500">{error}</div>;
+  }
 
   return (
-    <div className={`max-w-screen-xl mx-auto `}>
-      {/* Slide */}
-      <div className="relative w-full">
-        <div className="w-full h-[300px] md:h-[600px] overflow-hidden">
-          <Image
-            src={imageUrls[0]}
-            alt="Slide Image"
-            width={3000}
-            height={3000}
-            className="w-full h-full object-cover"
-          />
-        </div>
-      </div>
-
+    <div className="max-w-screen-xl mx-auto min-h-[90vh] mt-10 ">
       {/* Content Section */}
-      <div className="max-w-screen-xl mx-auto px-4 lg:px-0 py-16">
+      <div className="max-w-screen-xl mx-auto px-4 lg:px-0 ">
         {/* Heading */}
-        <h1
-          className={`text-3xl lg:text-4xl text-red-900 text-center mb-6  ${koulen.className}`}
-        >
-          ប្រជុំរឿងព្រេងខ្មែរ
-        </h1>
+        <div className="flex gap-4 mb-5">
+          <h1
+            className={`text-3xl lg:text-3xl text-red-900 text-center  ${koulen.className}`}
+          >
+            ប្រជុំរឿងព្រេងខ្មែរ
+          </h1>
+          <div className="relative flex-grow items-center">
+            <input
+              type="text"
+              placeholder="Search"
+              className="block w-full px-3 py-2 text-sm border border-red-900 rounded-md shadow-sm focus:outline-1 focus:ring-1 focus:ring-black "
+            />
+            <Search className="absolute inset-y-2 right-3 flex items-center " />
+          </div>
+        </div>
 
-        {/* Blog Grid */}
+        {/* item Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-8">
-          {blogs.map((blog) => (
-            <div
-              key={blog.id}
+          {legend.map((item) => (
+            <Link
+              href={`/client/khmer-legends/${item.id}`}
+              key={item.id}
               className="bg-white flex flex-col items-start rounded-lg shadow hover:shadow-lg transition overflow-hidden"
             >
-              <div className="w-full aspect-video relative">
+              <div className="w-full aspect-[6/9] object-cover relative">
                 <Image
-                  src={blog.image}
-                  alt={blog.title}
+                  src={`http://127.0.0.1:8000/assets/images/pages/${item.image}`}
+                  alt="image"
                   fill
-                  className="object-cover"
                 />
               </div>
               <div className="p-6 flex-1 flex flex-col justify-between items-start">
                 <div>
-                 
                   <h3 className="text-xl font-semibold mb-3 line-clamp-2">
-                    {blog.title}
+                    {item.name}
                   </h3>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                    {blog.description}
+                  <p className="text-gray-600 text-sm mb-2 line-clamp-2">
+                    {item.short_description}
                   </p>
                 </div>
-                <Button>Read More</Button>
+                <Button href={`/client/khmer-legends/${item.id}`}>
+                  Read More
+                </Button>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
