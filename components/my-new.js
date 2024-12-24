@@ -3,12 +3,13 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Koulen } from "next/font/google";
 import { EllipsisVertical } from "lucide-react";
+import { BASE_API_URL, IMAGE_NEWS_URL } from "@/env";
 
 const koulen = Koulen({ subsets: ["khmer"], weight: "400" });
 
 export default async function Page() {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/news`);
+    const response = await fetch(`${BASE_API_URL}/news`);
     if (!response.ok) throw new Error("Failed to fetch data");
 
     const { data: news } = await response.json();
@@ -39,7 +40,7 @@ export default async function Page() {
               >
                 <div className="w-full aspect-video relative">
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_API_URL}/assets/images/news/${item.image}`}
+                    src={`${IMAGE_NEWS_URL}${item.image}`}
                     alt={item.name}
                     fill
                     className="object-cover"

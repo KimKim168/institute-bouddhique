@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Carousel, CarouselContent } from "./ui/carousel";
 import Image from "next/image";
+import { BASE_API_URL, IMAGE_SLIDE_URL } from "@/env";
 
 export default function MySlider() {
   const [images, setImages] = useState([]);
@@ -12,7 +13,7 @@ export default function MySlider() {
     const fetchSlides = async () => {
       try {
         const response = await fetch(
-          "http://127.0.0.1:8000/api/slides?position=home_slides"
+          `${BASE_API_URL}/slides?position=home_slides`
         );
         const result = await response.json();
         console.log(result);
@@ -53,7 +54,7 @@ export default function MySlider() {
             {images.map((src, index) => (
               <div key={index} className="min-w-full">
                 <Image
-                  src={`http://127.0.0.1:8000/assets/images/slides/thumb/${src.image}`}
+                  src={`${IMAGE_SLIDE_URL}${src.image}`}
                   alt={`Slide ${index + 1}`}
                   width={2100}
                   height={1280}

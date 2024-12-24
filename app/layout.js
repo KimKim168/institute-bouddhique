@@ -25,10 +25,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <title>Buddhist Institute</title>
+        <link
+          rel="icon"
+          href="/assets/images/logo.png"
+          type="image/icon type"
+        ></link>
+      </head>
       <body
         className={`bg-color2 ${geistSans.variable} ${geistMono.variable} antialiased ${poppins.className}`}
       >
-        
         <Navbar />
         <div className="min-h-[70vh]">{children}</div>
         <MyFooter />

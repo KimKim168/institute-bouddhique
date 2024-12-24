@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import MySearch from "./components/search";
 import { CircleArrowLeft, CircleArrowRightIcon } from "lucide-react";
+import { BASE_API_URL, IMAGE_NEWS_URL } from "@/env";
 
 const koulen = Koulen({ subsets: ["khmer"], weight: ["400"] });
 
@@ -14,7 +15,7 @@ export default async function Page(props) {
 
   // Fetch filtered news data from the server
   const response = await fetch(
-    `http://127.0.0.1:8000/api/news?search=${encodeURIComponent(
+    `${BASE_API_URL}/news?search=${encodeURIComponent(
       search
     )}&page=${currentPage}`
   );
@@ -46,7 +47,7 @@ export default async function Page(props) {
             >
               <div className="w-full aspect-video relative">
                 <Image
-                  src={`http://127.0.0.1:8000/assets/images/news/${item.image}`}
+                  src={`${IMAGE_NEWS_URL}${item.image}`}
                   alt="image"
                   fill
                   className="object-cover"

@@ -1,4 +1,5 @@
 "use client";
+import { BASE_API_URL, IMAGE_CONTACT_URL } from "@/env";
 import { Koulen } from "next/font/google";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -13,7 +14,7 @@ export default function Page() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://127.0.0.1:8000/api/contact");
+        const response = await fetch(`${BASE_API_URL}/contact`);
         if (!response.ok) throw new Error("Failed to fetch data");
         const result = await response.json();
         setData(result);
@@ -81,7 +82,7 @@ export default function Page() {
         <div className="flex justify-center">
           <a href={data.link_location_first} target="_blank">
             <Image
-              src={`http://127.0.0.1:8000/assets/images/contacts/${data.image_first}`}
+              src={`${IMAGE_CONTACT_URL}${data.image_first}`}
               alt="Map"
               width={500}
               height={500}

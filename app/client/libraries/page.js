@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Koulen } from "next/font/google";
+import { BASE_API_URL, IMAGE_PAGE_URL } from "@/env";
 
 const koulen = Koulen({ subsets: ["khmer"], weight: "400" });
 
@@ -10,7 +11,7 @@ export default async function Page(props) {
 
   // Fetch data from the API
   const response = await fetch(
-    `http://127.0.0.1:8000/api/pages?&position=library&search=${search}`
+    `${BASE_API_URL}/pages?&position=library&search=${search}`
   );
   if (!response.ok) {
     console.error("Failed to fetch data");
@@ -46,7 +47,7 @@ export default async function Page(props) {
           {/* Image Section */}
           <div className="flex-1">
             <Image
-              src={`http://127.0.0.1:8000/assets/images/pages/${item.image}`}
+              src={`${IMAGE_PAGE_URL}${item.image}`}
               width={500}
               height={500}
               alt="Descriptive Alt Text"

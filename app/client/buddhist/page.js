@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import MyPageSearch from "@/components/my-page-search";
 
 import { Koulen } from "next/font/google";
+import { BASE_API_URL, IMAGE_PAGE_URL } from "@/env";
 
 const koulen = Koulen({ subsets: ["khmer"], weight: "400" });
 
@@ -13,7 +14,7 @@ export default async function Page(props) {
   const currentPage = parseInt(searchParams.page, 10) || 1;
 
   const response = await fetch(
-    `http://127.0.0.1:8000/api/pages?&position=buddhist&search=${search}&page=${currentPage}`
+    `${BASE_API_URL}/pages?&position=buddhist&search=${search}&page=${currentPage}`
   );
   if (!response.ok) {
     console.error("Failed to fetch data");
@@ -48,7 +49,7 @@ export default async function Page(props) {
             >
               <div className="w-full aspect-[6/9] object-cover relative">
                 <Image
-                  src={`http://127.0.0.1:8000/assets/images/pages/${item.image}`}
+                  src={`${IMAGE_PAGE_URL}${item.image}`}
                   alt="image"
                   fill
                 />
