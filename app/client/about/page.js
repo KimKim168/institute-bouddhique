@@ -80,13 +80,19 @@ export default function Page() {
         </div>
         {/* Image Content */}
         <div className="flex justify-center">
-          <a href={data.link_location_first} target="_blank">
+          <a
+            href={data?.link_location_first || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Image
-              src={`${IMAGE_CONTACT_URL}${data.image_first}`}
+              src={`${IMAGE_CONTACT_URL}${
+                data?.image_first || "placeholder.png"
+              }`}
               alt="Map"
               width={500}
               height={500}
-              className="rounded-lg shadow-lg"
+              className="rounded-lg shadow-lg w-full h-auto"
             />
           </a>
         </div>
