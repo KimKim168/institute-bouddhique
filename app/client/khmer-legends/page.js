@@ -1,72 +1,46 @@
-"use client";
 import Image from "next/image";
-import { Koulen } from "next/font/google";
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import MyPageSearch from "@/components/my-page-search";
+import { Koulen } from "next/font/google";
 
-const koulen = Koulen({ subsets: ["khmer"], weight: ["400"] });
+const koulen = Koulen({ subsets: ["khmer"], weight: "400" });
 
-export default function Page() {
-  const [legend, setLegend] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+export default async function Page(props) {
+  const searchParams = props.searchParams || {};
+  const search = searchParams.search || "";
+  const currentPage = parseInt(searchParams.page, 10) || 1;
 
-  useEffect(() => {
-    const fetchLegend = async () => {
-      try {
-        const response = await fetch(
-          "http://127.0.0.1:8000/api/pages?position=khmer_legend"
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch news");
-        }
-        const result = await response.json();
-        setLegend(result);
-      } catch (err) {
-        console.error(err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchLegend();
-  }, []);
-
-  if (loading) {
-    return <div className="text-center py-10">Loading...</div>;
+  // Fetch data from the API
+  const response = await fetch(
+    `http://127.0.0.1:8000/api/pages?&position=khmer_legend&search=${search}&page=${currentPage}`
+  );
+  if (!response.ok) {
+    console.error("Failed to fetch data");
+    return <div>Error loading data</div>;
   }
-
-  if (error) {
-    return <div className="text-center py-10 text-red-500">{error}</div>;
-  }
+  const result = await response.json();
+  const data = result.data;
+  const current_page = result.current_page; // Current page
+  const last_page = result.last_page; // Total pages
 
   return (
     <div className="max-w-screen-xl mx-auto min-h-[90vh] mt-10 ">
       {/* Content Section */}
-      <div className="max-w-screen-xl mx-auto px-4 lg:px-0 ">
+      <div className="max-w-screen-xl mx-auto px-4 lg:px-2 ">
         {/* Heading */}
-        <div className="flex gap-4 mb-5">
+        <div className="flex items-center gap-4 mb-5">
           <h1
-            className={`text-3xl lg:text-3xl text-red-900 text-center  ${koulen.className}`}
+            className={`text-lg lg:text-2xl text-red-900 text-center  ${koulen.className}`}
           >
             ប្រជុំរឿងព្រេងខ្មែរ
           </h1>
-          <div className="relative flex-grow items-center">
-            <input
-              type="text"
-              placeholder="Search"
-              className="block w-full px-3 py-2 text-sm border border-red-900 rounded-md shadow-sm focus:outline-1 focus:ring-1 focus:ring-black "
-            />
-            <Search className="absolute inset-y-2 right-3 flex items-center " />
-          </div>
+          <MyPageSearch />
         </div>
 
         {/* item Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-8">
-          {legend.map((item) => (
+          {data.map((item) => (
             <Link
               href={`/client/khmer-legends/${item.id}`}
               key={item.id}
@@ -94,6 +68,32 @@ export default function Page() {
               </div>
             </Link>
           ))}
+        </div>
+        {/* Pagination Controls */}
+        <div className="mt-8 flex justify-center items-center gap-4">
+          {current_page > 1 && (
+            <Link
+              href={`?search=${encodeURIComponent(search)}&page=${
+                current_page - 1
+              }`}
+              className="px-4 py-2 bg-gray-900 text-white rounded hover:bg-white hover:text-black duration-700"
+            >
+              <CircleArrowLeft />
+            </Link>
+          )}
+          <span className="px-4 py-2 bg-red-200 text-black rounded">
+            Page {current_page} of {last_page}
+          </span>
+          {current_page < last_page && (
+            <Link
+              href={`?search=${encodeURIComponent(search)}&page=${
+                current_page + 1
+              }`}
+              className="px-4 py-2 bg-gray-900 text-white rounded hover:bg-white hover:text-black duration-700"
+            >
+              <CircleArrowRightIcon />
+            </Link>
+          )}
         </div>
       </div>
     </div>

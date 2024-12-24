@@ -1,119 +1,29 @@
-"use client";
 import React from "react";
-import { usePathname } from "next/navigation";
-import { Koulen } from "next/font/google";
+import MyFooterMenu from "./my-footer-menu";
 
-const koulen = Koulen({ subsets: ["khmer"], weight: ["400"] });
-
-function MyFooter() {
-  const pathname = usePathname();
-
+export default async function MyFooter() {
+  const response = await fetch("http://127.0.0.1:8000/api/footer");
+  const result = await response.json();
+  // console.log(result);
   return (
     <>
       {" "}
       <footer className="bg-color-bold  pt-5 mt-10">
-        <ul
-          className={`flex justify-center text-[10px] md:text-sm xl:text-base space-x-2 sm:space-x-4 mt-4  lg:space-x-8 lg:mt-0 ${koulen.className}`}
-        >
-          <li>
-            <a
-              href="/"
-              className={`py-2 rounded ${
-                pathname === "/"
-                  ? "underline text-white "
-                  : "text-white hover:underline"
-              }`}
-            >
-              ទំព័រដើម
-            </a>
-          </li>
-          <li>
-            <a
-              href="/client/news"
-              className={`py-2 rounded ${
-                pathname === "/client/news"
-                  ? "underline text-white "
-                  : "text-white hover:underline"
-              }`}
-            >
-              ព័ត៌មានថ្មីៗ
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="/client/khmer-legends"
-              className={`py-2 rounded ${
-                pathname === "/client/khmer-legends"
-                  ? "underline text-white "
-                  : "text-white hover:underline"
-              }`}
-            >
-              ប្រជុំរឿងព្រេងខ្មែរ
-            </a>
-          </li>
-          <li>
-            <a
-              href="/client/libraries"
-              className={`py-2 rounded ${
-                pathname === "/client/libraries"
-                  ? "underline text-white "
-                  : "text-white hover:underline"
-              }`}
-            >
-              បណ្ណាល័យ
-            </a>
-          </li>
-          <li>
-            <a
-              href="/client/magazine"
-              className={`py-2 rounded ${
-                pathname === "/client/magazine"
-                  ? "underline text-white "
-                  : "text-white hover:underline"
-              }`}
-            >
-              ទស្សនាវដ្ដីកម្ពុជសុរិយា
-            </a>
-          </li>
-          <li>
-            <a
-              href="/client/buddhist"
-              className={`py-2 rounded ${
-                pathname === "/client/buddhist"
-                  ? "underline text-white "
-                  : "text-white hover:underline"
-              }`}
-            >
-              នាទីព្រះពុទ្ធសាសនា
-            </a>
-          </li>
-          <li>
-            <a
-              href="/client/about"
-              className={`py-2 rounded ${
-                pathname === "/client/about"
-                  ? "underline text-white "
-                  : "text-white hover:underline"
-              }`}
-            >
-              អំពីវិទ្យាស្ថាន
-            </a>
-          </li>
-        </ul>
+        <MyFooterMenu />
         <div className="text-white flex justify-center text-[10px] md:text-sm py-4">
-          <p className="pr-2 border-r-2">© 2024. All Rights Reserved.</p>
+          <p className="pr-2 border-r-2">{result.copyright}</p>
+          <div className="flex pl-2 ">
+            <p>Developed By :</p>
           <a
             href="https://www.corasolution.com/"
             target="_blank"
-            className="hover:cursor-pointer pl-2"
+            className="hover:cursor-pointer pl-1 hover:underline"
           >
-            Developed By: Cora Soft
+             Cora Soft
           </a>
+          </div>
         </div>
       </footer>
     </>
   );
 }
-
-export default MyFooter;

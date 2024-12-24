@@ -1,6 +1,6 @@
 import MySlider from "@/components/my-slide";
-import MyHomePageButtom from "@/components/my-home-page-buttom";
 import MyNew from "@/components/my-new";
+import Page from "./client/libraries/page";
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
       {/*End Hero */}
       <MyNew />
       {/* Start */}
-      <MyHomePageButtom />
+      <Page />
       {/* End */}
     </>
   );

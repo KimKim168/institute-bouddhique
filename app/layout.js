@@ -28,6 +28,7 @@ export default function RootLayout({ children }) {
       <body
         className={`bg-color2 ${geistSans.variable} ${geistMono.variable} antialiased ${poppins.className}`}
       >
+        
         <Navbar />
         <div className="min-h-[70vh]">{children}</div>
         <MyFooter />
