@@ -18,6 +18,7 @@ function MyLink() {
         const socialMediaResponse = await fetch(
          `${BASE_API_URL}/links`
         );
+        console.log(`${BASE_API_URL}/links`);
         if (!socialMediaResponse.ok)
           throw new Error("Failed to fetch social media links");
 
@@ -34,7 +35,7 @@ function MyLink() {
         const contactData = await contactResponse.json();
         setContact(contactData);
       } catch (err) {
-        console.error("Failed to fetch data:", err);
+        console.log("Failed to fetch data:", err);
         setError(true);
       } finally {
         setLoading(false);
@@ -67,7 +68,7 @@ function MyLink() {
         >
           <Image
             src={`${IMAGE_LINK_URL}${image}`}
-            alt="Social Icon"
+            alt={`${IMAGE_LINK_URL}${image}`}
             width={30}
             height={30}
             className="text-white"
