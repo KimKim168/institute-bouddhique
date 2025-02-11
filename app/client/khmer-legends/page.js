@@ -8,9 +8,9 @@ import { BASE_API_URL, IMAGE_PAGE_URL } from "@/env";
 const koulen = Koulen({ subsets: ["khmer"], weight: "400" });
 
 export default async function Page(props) {
-  const searchParams = props.searchParams || {};
-  const search = searchParams.search || "";
-  const currentPage = parseInt(searchParams.page, 10) || 1;
+  const searchParams = await props.searchParams || {};
+  const search = searchParams.search || " ";
+  const currentPage =  parseInt( searchParams.page, 10) || 1;
 
   // Fetch data from the API
   const response = await fetch(

@@ -9,7 +9,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Image from "next/image";
-import { PhoneCallIcon, User } from "lucide-react";
+import { User } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Koulen } from "next/font/google";
 import { BASE_LOGIN_URL } from "@/env";

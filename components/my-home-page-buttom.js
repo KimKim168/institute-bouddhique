@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Koulen } from "next/font/google";
+import { BASE_API_URL, IMAGE_PAGE_URL } from "@/env";
 
 const koulen = Koulen({ subsets: ["khmer"], weight: ["400"] });
 
@@ -14,7 +15,7 @@ function MyHomePageButtom() {
     const fetchLibrary = async () => {
       try {
         const response = await fetch(
-          "http://127.0.0.1:8000/api/pages/?&position=library"
+          `${BASE_API_URL}/pages/?&position=library`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch data");
@@ -58,7 +59,7 @@ function MyHomePageButtom() {
           {/* Image Section */}
           <div className="flex-1">
             <Image
-              src={`http://127.0.0.1:8000/assets/images/pages/${item.image}`}
+              src={`${IMAGE_PAGE_URL}${item.image}`}
               width={500}
               height={500}
               alt="Descriptive Alt Text"

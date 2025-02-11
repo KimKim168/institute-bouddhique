@@ -8,6 +8,9 @@ const nextConfig = {
         port: "8000",
         pathname: "/**", // Allow all paths
       },
+      {
+        hostname: "buddhist-institute.kimsoreya.site",
+      },
     ],
   },
 };
