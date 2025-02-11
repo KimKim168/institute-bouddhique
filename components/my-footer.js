@@ -1,8 +1,9 @@
 import React from "react";
 import MyFooterMenu from "./my-footer-menu";
+import { BASE_API_URL } from "@/env";
 
 export default async function MyFooter() {
-  const response = await fetch("http://127.0.0.1:8000/api/footer");
+  const response = await fetch(`${BASE_API_URL}/footer`);
   const result = await response.json();
   // console.log(result);
   return (

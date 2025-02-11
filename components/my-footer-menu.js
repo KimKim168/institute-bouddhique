@@ -12,7 +12,7 @@ function MyFooterMenu() {
     <>
       {" "}
       <ul
-        className={`flex justify-center text-[10px] md:text-sm xl:text-base space-x-2 sm:space-x-4 mt-4  lg:space-x-8 lg:mt-0 ${koulen.className}`}
+        className={`grid grid-cols-7 px-2 md:flex justify-center text-[10px] sm:text-base xl:text-base space-x-2 sm:space-x-4 mt-4  lg:space-x-8 lg:mt-0 ${koulen.className}`}
       >
         <li>
           <a

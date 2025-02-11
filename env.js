@@ -3,6 +3,7 @@ const APP_URL = "http://127.0.0.1:8000";
 
 const IS_SHOW_KID_BOOKS = true;
 const EXCHANGE_RATE = 4100;
+const BASE_LOGIN_URL = BASE_BACKEND_URL + "/login";
 const BASE_API_URL = BASE_BACKEND_URL + "/api";
 const IMAGE_NEWS_URL = BASE_BACKEND_URL + "/assets/images/news/";
 const IMAGE_SLIDE_URL = BASE_BACKEND_URL + "/assets/images/slides/thumb/";
@@ -22,4 +23,5 @@ export {
   BASE_BACKEND_URL,
   BASE_API_URL,
   IMAGE_CONTACT_URL,
+  BASE_LOGIN_URL
 };

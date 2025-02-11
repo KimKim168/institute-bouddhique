@@ -9,9 +9,10 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Image from "next/image";
-import { PhoneCallIcon } from "lucide-react";
+import { PhoneCallIcon, User } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Koulen } from "next/font/google";
+import { BASE_LOGIN_URL } from "@/env";
 
 const koulen = Koulen({ subsets: ["khmer"], weight: ["400"] });
 
@@ -129,10 +130,9 @@ function MyMenu() {
 
             {/* Footer */}
             <SheetFooter className="py-4 border-t border-gray-200">
-              <div className="flex justify-start items-center space-x-1">
-                <PhoneCallIcon className="mr-1 md:mr-2 w-5 md:w-5" />
-                <p className="text-[16px]">016 535 683</p>
-              </div>
+              <a href={BASE_LOGIN_URL} className="flex justify-start items-center space-x-1">
+                <User/>
+              </a>
             </SheetFooter>
           </div>
         </SheetContent>

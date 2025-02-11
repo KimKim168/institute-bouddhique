@@ -12,7 +12,7 @@ export default async function Page(props) {
   const searchParams = props.searchParams || {};
   const search = searchParams.search || "";
   const currentPage = parseInt(searchParams.page, 10) || 1;
-
+ 
   // Fetch filtered news data from the server
   const response = await fetch(
     `${BASE_API_URL}/news?search=${encodeURIComponent(

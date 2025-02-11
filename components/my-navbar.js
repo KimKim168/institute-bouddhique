@@ -4,6 +4,8 @@ import Image from "next/image";
 import { Koulen } from "next/font/google";
 import { usePathname } from "next/navigation";
 import MyLink from "./my-link";
+import { User } from "lucide-react";
+import { BASE_LOGIN_URL } from "@/env";
 
 const koulen = Koulen({ subsets: ["khmer"], weight: ["400"] });
 
@@ -118,8 +120,10 @@ const Navbar = () => {
           </div>
           {/* Contact & Socials */}
           <div className="hidden  md:flex justify-end items-center space-x-2">
+          <a href={BASE_LOGIN_URL}><User/></a>
             <MyLink />
           </div>
+          
         </div>
 
         {/* Mobile Menu */}
