@@ -1,9 +1,10 @@
 import React from "react";
 import MyMenuBanner from "./components/my-menu-banner";
+import { BASE_API_URL } from "@/env";
 
 const Page = async ({ params }) => {
   const { id } = params; // No need to `await` for params
-  const response = await fetch(`http://127.0.0.1:8000/api/pages/${id}`);
+  const response = await fetch(`${BASE_API_URL}/pages/${id}`);
   let data = null;
 
   if (response.status === 200) {

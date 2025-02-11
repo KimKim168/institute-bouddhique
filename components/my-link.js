@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { PhoneCall } from "lucide-react";
 import Image from "next/image";
 import MyMenu from "./my-menu";
+import { BASE_API_URL, IMAGE_LINK_URL } from "@/env";
 
 function MyLink() {
   const [socialMedia, setSocialMedia] = useState([]);
@@ -15,7 +16,7 @@ function MyLink() {
       try {
         // Fetch social media links
         const socialMediaResponse = await fetch(
-          "http://127.0.0.1:8000/api/links"
+         `${BASE_API_URL}/links`
         );
         if (!socialMediaResponse.ok)
           throw new Error("Failed to fetch social media links");
@@ -25,7 +26,7 @@ function MyLink() {
 
         // Fetch contact information
         const contactResponse = await fetch(
-          "http://127.0.0.1:8000/api/contact"
+          `${BASE_API_URL}/contact`
         );
         if (!contactResponse.ok)
           throw new Error("Failed to fetch contact information");
@@ -65,7 +66,7 @@ function MyLink() {
           className="cursor-pointer"
         >
           <Image
-            src={`http://127.0.0.1:8000/assets/images/links/${image}`}
+            src={`${IMAGE_LINK_URL}${image}`}
             alt="Social Icon"
             width={30}
             height={30}
