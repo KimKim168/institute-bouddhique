@@ -2,28 +2,16 @@
 import React, { useState, useEffect } from "react";
 import { Carousel, CarouselContent } from "./ui/carousel";
 import Image from "next/image";
-import { BASE_API_URL, IMAGE_SLIDE_URL } from "@/env";
 
 export default function MySlider() {
-  const [images, setImages] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // Static sample images
+  const images = [
+    { image: "https://picsum.photos/2100/1280?random=1" },
+    { image: "https://picsum.photos/2100/1280?random=2" },
+    { image: "https://picsum.photos/2100/1280?random=3" },
+  ];
 
-  // Fetch slides from the API
-  useEffect(() => {
-    const fetchSlides = async () => {
-      try {
-        const response = await fetch(
-          `${BASE_API_URL}/slides?position=home_slides`
-        );
-        const result = await response.json();
-        console.log(result);
-        setImages(result.slides || []);
-      } catch (error) {
-        console.error("Failed to fetch slides:", error);
-      }
-    };
-    fetchSlides();
-  }, []);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   // Auto-slide every 4 seconds
   useEffect(() => {
@@ -35,18 +23,13 @@ export default function MySlider() {
     }
   }, [images]);
 
-  // Show a loading indicator while images are being fetched
-  if (images.length === 0) {
-    return <div>Loading slides...</div>;
-  }
-
   return (
-    <div className="max-w-screen-2xl mt-2 mx-auto px-2 xl:px-16">
+    <div className="relative px-2 mx-auto mt-2 max-w-screen-2xl xl:px-16">
       <Carousel className="w-full" selectedindex={currentIndex}>
         <CarouselContent>
           {/* Slides */}
           <div
-            className="flex transition-transform duration-500 relative"
+            className="relative flex transition-transform duration-500"
             style={{
               transform: `translateX(-${currentIndex * 100}%)`,
             }}
@@ -54,7 +37,7 @@ export default function MySlider() {
             {images.map((src, index) => (
               <div key={index} className="min-w-full">
                 <Image
-                  src={`${IMAGE_SLIDE_URL}${src.image}`}
+                  src={src.image}
                   alt={`Slide ${index + 1}`}
                   width={2100}
                   height={1280}
@@ -65,7 +48,7 @@ export default function MySlider() {
           </div>
 
           {/* Dot Indicators */}
-          <div className="flex justify-center space-x-3 absolute bottom-3 left-1/2 transform -translate-x-1/2 items-center">
+          <div className="absolute flex items-center justify-center space-x-3 transform -translate-x-1/2 bottom-3 left-1/2">
             {images.map((_, index) => (
               <div
                 key={index}

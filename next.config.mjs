@@ -11,6 +11,15 @@ const nextConfig = {
       {
         hostname: "buddhist-institute.kimsoreya.site",
       },
+      {
+        hostname: "picsum.photos",
+      },
+      {
+        hostname: "images.unsplash.com",
+      },
+      {
+        hostname: "m.media-amazon.com",
+      },
     ],
   },
 };

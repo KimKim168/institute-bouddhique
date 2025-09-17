@@ -15,10 +15,10 @@ const Navbar = () => {
 
   return (
     <header>
-      <nav className="bg-transparent  py-2 dark:bg-gray-800">
+      <nav className="py-2 bg-transparent dark:bg-gray-800">
         <div className="flex items-center justify-between max-w-screen-2xl px-2 xl:px-[100px] mx-auto gap-1">
           {/* Logo */}
-          <div className="hidden md:flex justify-center">
+          <div className="justify-center hidden md:flex">
             <Image
               src="/assets/images/logo.png"
               width={100}
@@ -27,7 +27,7 @@ const Navbar = () => {
               className="w-20 lg:w-24 md:w-20"
             />
           </div>
-          <div className="hidden lg:flex flex-1 justify-center transition-all duration-300 ease-in-out">
+          <div className="justify-center flex-1 hidden transition-all duration-300 ease-in-out lg:flex">
             <ul
               className={`flex  items-center text-[10px] md:text-sm xl:text-lg p-4 space-x-3 lg:space-x-5 text-start ${koulen.className}`}
             >
@@ -119,15 +119,15 @@ const Navbar = () => {
             </ul>
           </div>
           {/* Contact & Socials */}
-          <div className="hidden  md:flex justify-end items-center space-x-2">
-          <a href={BASE_LOGIN_URL}><User/></a>
+          <div className="items-center justify-end hidden space-x-2 md:flex">
+          {/* <a href={BASE_LOGIN_URL}><User/></a> */}
             <MyLink />
           </div>
           
         </div>
 
         {/* Mobile Menu */}
-        <div className="md:hidden flex justify-between items-center px-4">
+        <div className="flex items-center justify-between px-4 md:hidden">
           <Image
             src="/assets/images/logo.png"
             width={70}
@@ -141,7 +141,7 @@ const Navbar = () => {
       </nav>
 
       {/* Mobile Menu Toggle */}
-      <div className="hidden bg-color-bold p-4">
+      <div className="hidden p-4 bg-color-bold">
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="text-gray-500"

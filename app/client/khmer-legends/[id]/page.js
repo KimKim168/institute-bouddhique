@@ -1,33 +1,37 @@
 import React from "react";
 import MyMenuBanner from "./components/my-menu-banner";
-import { BASE_API_URL } from "@/env";
 
-const Page = async ({ params }) => {
-  const { id } = params; // No need to `await` for params
-  const response = await fetch(`${BASE_API_URL}/pages/${id}`);
-  let data = null;
+const Page = ({ params }) => {
+  // Static data example
+  const data = {
+    description: `
+      <h2>សូមស្វាគមន៍!</h2>
+      <p>នេះគឺជាតំណាងនៃមាតិកាផ្ទុកក្នុងទំព័រប្រភេទស្ទាតិក។ អ្នកអាចដាក់អត្ថបទ HTML តាមបំណងនៅទីនេះ។</p>
+      <ul>
+        <li>ចំណុចទី ១</li>
+        <li>ចំណុចទី ២</li>
+        <li>ចំណុចទី ៣</li>
+      </ul>
+    `,
+  };
 
-  if (response.status === 200) {
-    data = await response.json();
-  }
-
-  // Ensure data and description exist before rendering
   return (
-    <div className="max-w-screen-xl mx-auto ">
-      <div className="sm:flex gap-10 px-2">
-        {data && data.description ? (
+    <div className="max-w-screen-xl mx-auto">
+      <div className="gap-10 px-2 sm:flex">
+        {data?.description ? (
           <div
-            className="prose max-w-none sm:flex-1 my-10"
+            className="my-10 prose max-w-none sm:flex-1"
             dangerouslySetInnerHTML={{ __html: data.description }}
           />
         ) : (
-          <p className="flex-1 mt-10">Loading or no content available...</p>
+          <p className="flex-1 mt-10">No content available...</p>
         )}
-        <div className="sm:flex-1 mb-5 sm:mb-0 sm:max-w-52">
+        <div className="mb-5 sm:flex-1 sm:mb-0 sm:max-w-52">
           <MyMenuBanner />
         </div>
       </div>
     </div>
   );
 };
+
 export default Page;

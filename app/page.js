@@ -9,7 +9,6 @@ export default function Home() {
       <MySlider />
       {/*End Slide */}
       {/* Hero */}
-
       {/*End Hero */}
       <MyNew />
       {/* Start */}

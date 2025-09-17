@@ -19,17 +19,17 @@ const MySearch = ({ placeholder }) => {
   }
   return (
     <>
-      <div className="relative flex-grow items-center">
+      <div className="relative items-center flex-grow">
         <input
           type="text"
-          className="block w-full  px-3 py-2 text-sm border border-red-900 rounded-md shadow-sm focus:outline-1 focus:ring-1 focus:ring-black "
+          className="block w-full px-3 py-2 text-sm border border-red-900 rounded-md shadow-sm focus:outline-1 focus:ring-1 focus:ring-black "
           placeholder={placeholder || "Search"}
           onChange={(e) => {
             handleSearch(e.target.value);
           }}
           defaultValue={searchParams.get("search")?.toString()}
         />
-        <SearchIcon className="absolute inset-y-2 right-3 flex items-center " />
+        <SearchIcon className="absolute flex items-center inset-y-2 right-3 " />
       </div>
     </>
   );
