@@ -4,8 +4,6 @@ import Image from "next/image";
 import { Koulen } from "next/font/google";
 import { usePathname } from "next/navigation";
 import MyLink from "./my-link";
-import { User } from "lucide-react";
-import { BASE_LOGIN_URL } from "@/env";
 
 const koulen = Koulen({ subsets: ["khmer"], weight: ["400"] });
 
